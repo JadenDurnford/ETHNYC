@@ -23,3 +23,5 @@ const whale_list = [
   "0xe1D29d0a39962a9a8d2A297ebe82e166F8b8EC18",
   "0x3612b2e93b49F6c797066cA8c38b7f522b32c7cb",
 ];
+
+d
