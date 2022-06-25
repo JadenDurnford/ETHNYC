@@ -29,6 +29,28 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
+<<<<<<< HEAD
+      <main className={styles.main}>
+        <h1 className={styles.title}>
+          Welcome to <a href="https://nextjs.org">Next.js!</a>
+        </h1>
+        <ThirdwebConnect />
+        <button onClick={txSender}>txSender</button>
+      </main>
+      <footer className={styles.footer}>
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <span className={styles.logo}>
+            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+          </span>
+        </a>
+      </footer>
+    </div>
+=======
         <main className={styles.main}>
           <div className={styles.header}>
             <div style={{ margin: "auto", marginLeft: "10px" }}>
@@ -43,6 +65,7 @@ export default function Home() {
           </div>
         </main>
       </div>
+>>>>>>> 8f5d49fe45eb5e58af6e4aaba4aa663e1b1bd1bd
     </ThirdwebProvider>
   )
 }
