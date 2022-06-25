@@ -2,7 +2,7 @@ import pandas as pd
 
 df = pd.read_json('user.json')
 pd.set_option('display.max_columns', None)
-print(df.head())
+# print(df.head())
 # df.dropna(inplace=True)
 
 def calculate_whale_buy_sentiment():
@@ -10,10 +10,16 @@ def calculate_whale_buy_sentiment():
     whales_bought = {}
     for index, row in df.iterrows():
         if row['collection'] not in whales_bought:
-            whales_bought[row['collection']] = []
+            if isinstance(row['collection'], str):
+                whales_bought[row['collection']] = []
+            else:
+                continue
         if row['toAddress'] not in whales_bought[row['collection']]:
-            whales_bought[row['collection']].append(row['toAddress'])
-
+            if isinstance(row['toAddress'], str):
+                whales_bought[row['collection']].append(row['toAddress'])
+            else:
+                continue
+    
     print(whales_bought)
     for i in range(len(whales_bought)):
         whales_bought[list(whales_bought)[i]] = len(whales_bought[list(whales_bought)[i]])
@@ -24,9 +30,15 @@ def calculate_whale_sell_sentiment():
     whales_sold = {}
     for index, row in df.iterrows():
         if row['collection'] not in whales_sold:
-            whales_sold[row['collection']] = []
+            if isinstance(row['collection'], str):
+                whales_sold[row['collection']] = []
+            else:
+                continue
         if row['fromAddress'] not in whales_sold[row['collection']]:
-            whales_sold[row['collection']].append(row['fromAddress'])
+            if isinstance(row['collection'], str):
+                whales_sold[row['collection']].append(row['fromAddress'])
+            else:
+                continue
     print(whales_sold)
     for i in range(len(whales_sold)):
         whales_sold[list(whales_sold)[i]] = len(whales_sold[list(whales_sold)[i]])
