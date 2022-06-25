@@ -5,7 +5,7 @@ const options = {
     "x-api-key": "b8644c0e-9e85-4fdb-a0d7-55f7f8672cab",
   },
 };
-const fs = require('fs');
+const fs = require("fs");
 
 const temp = "0xF296178d553C8Ec21A2fBD2c5dDa8CA9ac905A00";
 
@@ -15,7 +15,11 @@ fetch(
 )
   .then((response) => response.json())
   .then((response) => {
-    var no_activities = response["activities"]
+    var no_activities = response["activities"];
+    for (let i = 0; i < no_activities.length; i++) {
+      no_activities[i]["collection"] = no_activities[i]["collection"]["collectionId"]
+    }
+
     const data = JSON.stringify(no_activities);
     fs.writeFile("user.json", data, (err) => {
       if (err) {
