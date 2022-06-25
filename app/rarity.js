@@ -1,7 +1,6 @@
 const axios = require("axios").default;
 require('dotenv').config();
 
-
 axios.defaults.headers.common['x-api-key'] = `${process.env.X_API_KEY}`;
 
 const contractAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D";
