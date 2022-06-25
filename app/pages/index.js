@@ -6,6 +6,8 @@ import ThirdwebConnect from "./ThirdwebConnect";
 import { txSender, searchDropdown } from './collectionFunctions';
 import SearchBar from './searchBar';
 import SearchSection from './searchBar';
+import ProjectView from './projectView';
+import { useState } from 'react';
 
 const supportedChainIds = [4];
 const connectors = {
@@ -13,8 +15,11 @@ const connectors = {
 };
 
 export default function Home() {
-  const openMarketplace = (id) => {
+  const [collectionID, setCollectionID] = useState("");
+
+  const openView = (id) => {
     console.log(`open detail for ${id}`);
+    setCollectionID(id);
   }
 
   return (
@@ -40,10 +45,10 @@ export default function Home() {
           </div>
           <div style={{ display: "flex" }}>
             <div style={{ marginLeft: 0, width: "30%", height: "100vh", backgroundImage: "linear-gradient(rgb(174, 221, 252), white)" }}>
-              <SearchSection openMarketplace={openMarketplace}></SearchSection>
+              <SearchSection openView={openView}></SearchSection>
             </div>
             <div style={{ marginRight: 0, width: "70%", height: "100vh" }}>
-              <p>the actual marketplace stuff</p>
+              <ProjectView id={collectionID}></ProjectView>
             </div>
           </div>
         </main>

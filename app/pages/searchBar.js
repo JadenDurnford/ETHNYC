@@ -31,7 +31,7 @@ const SearchSection = (props) => {
         <div
           className={styles.searchresult}
           key={r.collectionId}
-          onClick={() => { props.openMarketplace(r.collectionId) }}>
+          onClick={() => { props.openView(r.collectionId) }}>
           <div>{r.name}</div>
           <div><img src={r.image} className={styles.searchicon}></img></div>
         </div>

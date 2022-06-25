@@ -147,6 +147,11 @@
   height: 32px;
 }
 
+.projectview {
+  color: #222;
+  padding: 1rem;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
