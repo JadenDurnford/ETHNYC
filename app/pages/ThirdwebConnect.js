@@ -4,14 +4,14 @@ const ThirdwebConnect = () => {
   const { address, chainId, provider } = useWeb3();
   return (
     <div className="container">
-      <h1>ThirdWeb Button</h1>
-      <ConnectWallet />
-      <h2>
-        Address:<b> {address}</b>
-      </h2>
-      <h2>
-        ChainId:<b> {chainId}</b>
-      </h2>
+      {/* <h2>Connection</h2> */}
+      <ConnectWallet style={{ backgroundColor: "white" }} />
+      {/* <p style={{ fontSize: "10px" }}>
+        Address: {address}
+      </p> */}
+      {/* <p style={{ fontSize: "10px" }}>
+        Chain ID: {chainId}
+      </p> */}
     </div>
   );
 };
