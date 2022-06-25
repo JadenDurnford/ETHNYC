@@ -3,9 +3,8 @@ const schedule = require('node-schedule');
 
 axios.defaults.headers.common['x-api-key'] = "2572d7d9-d902-49a3-9582-be88a484f552";
 
-export async function searchDropdown() {
-    const projName = "bored"; //dynamically change with user input
-    const plistResponse = await axios.get(`https://api.reservoir.tools/search/collections/v1?name=${projName}&limit=5`);
+export async function searchDropdown(value) {
+    const plistResponse = await axios.get(`https://api.reservoir.tools/search/collections/v1?name=${value}&limit=5`);
     const collList = plistResponse.data.collections;
     console.log(collList);
 }
