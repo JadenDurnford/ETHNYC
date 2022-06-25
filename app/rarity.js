@@ -32,7 +32,7 @@ async function main() {
                 }
             }
         }
-        
+        console.log(tokenTraits);
       } catch (error) {
         console.error(error);
       }
