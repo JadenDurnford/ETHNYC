@@ -2,7 +2,7 @@ import pandas as pd
 
 df = pd.read_json('user.json')
 pd.set_option('display.max_columns', None)
-print(df.head())
+# print(df.head())
 
 # For the front-end, show this data table to users so they can also track whales.
 whales_bought = {}
@@ -15,14 +15,17 @@ whales_sold = {}
 for index, row in df.iterrows():
     if row['collection'] not in whales_bought:
         whales_bought[row['collection']] = []
-    if whales_bought[row['toAddress']] not in whales_bought[row['collection']]
-        whales_bought[row['collection']].append(whales_bought[row['toAddress']])
+    if row['toAddress'] not in whales_bought[row['collection']]:
+        whales_bought[row['collection']].append(row['toAddress'])
 
 for index, row in df.iterrows():
     if row['collection'] not in whales_sold:
         whales_sold[row['collection']] = []
-    if whales_sold[row['fromAddress']] not in whales_sold[row['collection']]:
-        whales_sold[row['collection']].append(whales_sold[row['fromAddress']])
+    if row['fromAddress'] not in whales_sold[row['collection']]:
+        whales_sold[row['collection']].append(row['fromAddress'])
+
+print(whales_bought)
+print(whales_sold)
 
 #get .len() of the whales_sold[collection id] to get how many nfts in this collection were sold by whales.
 
