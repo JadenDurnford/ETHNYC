@@ -3,16 +3,9 @@ const schedule = require('node-schedule');
 
 axios.defaults.headers.common['x-api-key'] = "2572d7d9-d902-49a3-9582-be88a484f552";
 
-<<<<<<< HEAD
-async function searchDropdown(value) {
-    const plistResponse = await axios.get(`https://api.reservoir.tools/search/collections/v1?name=${value}&limit=5`);
-    const collList = plistResponse.data.collections;
-    console.log(collList);
-=======
 export async function searchDropdown(value) {
   const plistResponse = await axios.get(`https://api.reservoir.tools/search/collections/v1?name=${value}&limit=5`);
   return plistResponse.data.collections;
->>>>>>> 8f5d49fe45eb5e58af6e4aaba4aa663e1b1bd1bd
 }
 
 async function collectionInfo() {
@@ -141,18 +134,10 @@ async function snipeWatcher(snipeParams) {
   }
 };
 export async function txSender() {
-<<<<<<< HEAD
-    axios.defaults.headers.post['Access-Control-Allow-Origin'] = "*";
-    axios.defaults.headers.post['Content-Type'] = "json";
-    const txResponse = await axios.get("http://api-rinkeby.reservoir.tools/execute/buy/v2?token=0x9799b44622224ea7bc27629fb7f284ced9c83eeb%3A65&taker=0xA63EF71bd5971C65C84dA2602d2903510b140f8F&onlyQuote=false&partial=false&skipBalanceCheck=false");
-    const txData = txResponse.data.steps[0].data;
-}; 
-=======
   axios.defaults.headers.post['Access-Control-Allow-Origin'] = "*";
   axios.defaults.headers.post['Content-Type'] = "json";
   const txResponse = await axios.get("http://api-rinkeby.reservoir.tools/execute/buy/v2?token=0x9799b44622224ea7bc27629fb7f284ced9c83eeb%3A65&taker=0xA63EF71bd5971C65C84dA2602d2903510b140f8F&onlyQuote=false&partial=false&skipBalanceCheck=false");
-  console.log(txResponse.data);
+  const txData = txResponse.data.steps[0].data;
 };
->>>>>>> 8f5d49fe45eb5e58af6e4aaba4aa663e1b1bd1bd
 
 
