@@ -9,8 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "api": "^4.5.1",
+<<<<<<< HEAD
     "axios": "^0.27.2",
+=======
+    "api": "^4.5.1",
+<<<<<<< HEAD
+    "axios": "^0.27.2",
+=======
+>>>>>>> 7034f8dc77436aba01be80588239a500382ca4a6
+>>>>>>> 35c79b5b1db39327a14b2527dfea4ae8955beab2
     "dotenv": "^16.0.1",
     "lodash": "^4.17.21",
     "next": "12.1.6",
