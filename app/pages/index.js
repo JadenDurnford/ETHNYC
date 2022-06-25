@@ -28,8 +28,7 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
         <ThirdwebConnect />
-        <button onClick={searchDropdown}>Dropdown Search</button>
-        
+        <button onClick={txSender}>txSender</button>
       </main>
       <footer className={styles.footer}>
         <a

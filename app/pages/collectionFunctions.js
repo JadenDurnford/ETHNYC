@@ -3,12 +3,11 @@ const schedule = require('node-schedule');
 
 axios.defaults.headers.common['x-api-key'] = "2572d7d9-d902-49a3-9582-be88a484f552";
 
-export async function searchDropdown(value) {
+async function searchDropdown(value) {
     const plistResponse = await axios.get(`https://api.reservoir.tools/search/collections/v1?name=${value}&limit=5`);
     const collList = plistResponse.data.collections;
     console.log(collList);
 }
-
 
 async function collectionInfo() {
     const contractAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"; //using address for project user selected
@@ -40,7 +39,6 @@ async function collectionInfo() {
         }
     }
 }
-
 
 async function rarityCalculator() {
     const contractAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"; //address for project user started sniping
@@ -140,6 +138,7 @@ export async function txSender() {
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = "*";
     axios.defaults.headers.post['Content-Type'] = "json";
     const txResponse = await axios.get("http://api-rinkeby.reservoir.tools/execute/buy/v2?token=0x9799b44622224ea7bc27629fb7f284ced9c83eeb%3A65&taker=0xA63EF71bd5971C65C84dA2602d2903510b140f8F&onlyQuote=false&partial=false&skipBalanceCheck=false");
-    console.log(txResponse.data);
+    const txData = txResponse.data.steps[0].data;
 }; 
+
 
