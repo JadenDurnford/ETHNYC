@@ -1,35 +1,8 @@
-const options = {
-  method: "GET",
-  headers: {
-    Accept: "*/*",
-    "x-api-key": "b8644c0e-9e85-4fdb-a0d7-55f7f8672cab",
-  },
-};
+const axios = require("axios");
+require('dotenv').config();
+axios.defaults.headers.common["x-api-key"] = `${process.env.EDDY_KEY}`;
+
 const fs = require("fs");
-
-const temp = "0xF296178d553C8Ec21A2fBD2c5dDa8CA9ac905A00";
-
-fetch(
-  "https://api.reservoir.tools/users/" + temp + "/activity/v1?limit=20",
-  options
-)
-  .then((response) => response.json())
-  .then((response) => {
-    var no_activities = response["activities"];
-    for (let i = 0; i < no_activities.length; i++) {
-      no_activities[i]["collection"] = no_activities[i]["collection"]["collectionId"]
-    }
-
-    const data = JSON.stringify(no_activities);
-    fs.writeFile("user.json", data, (err) => {
-      if (err) {
-        throw err;
-      }
-      console.log("JSON data is saved.");
-    });
-  })
-  .catch((err) => console.error(err));
-
 const whale_list = [
   "0xE052113bd7D7700d623414a0a4585BCaE754E9d5",
   "0x052564eB0fd8b340803dF55dEf89c25C432f43f4",
@@ -42,3 +15,14 @@ const whale_list = [
   "0xe1D29d0a39962a9a8d2A297ebe82e166F8b8EC18",
   "0x3612b2e93b49F6c797066cA8c38b7f522b32c7cb",
 ];
+
+async function tempfunc() {
+  for (var i = 0; i < whale_list.length; i++) {
+    const data = await axios.get(
+      `https://api.reservoir.tools/users/${whale_list[i]}/activity/v1?limit=20`
+    );
+    console.log(data["data"]["activities"]);
+  }
+}
+
+tempfunc();
