@@ -1,6 +1,8 @@
 const axios = require("axios");
 const fs = require("fs");
-require('dotenv').config();
+const ethers = require("ethers");
+
+require("dotenv").config();
 axios.defaults.headers.common["x-api-key"] = `${process.env.EDDY_KEY}`;
 
 const whale_list = [
@@ -17,16 +19,16 @@ const whale_list = [
 ];
 
 async function whaleActivity() {
-  var alldata = []
+  var alldata = [];
   for (var i = 0; i < whale_list.length; i++) {
     const data = await axios.get(
       `https://api.reservoir.tools/users/${whale_list[i]}/activity/v1?limit=20`
     );
-    activity = data["data"]["activities"]
+    activity = data["data"]["activities"];
     for (let i = 0; i < activity.length; i++) {
-      activity[i]["collection"] = activity[i]["collection"]["collectionId"]
+      activity[i]["collection"] = activity[i]["collection"]["collectionId"];
     }
-    alldata = alldata.concat(activity)
+    alldata = alldata.concat(activity);
     data_string = JSON.stringify(alldata);
   }
   fs.writeFile("user.json", data_string, (err) => {
@@ -37,4 +39,16 @@ async function whaleActivity() {
   });
 }
 
-whaleActivity();
+var url = `${process.env.RPC_URL}`;
+var provider = new ethers.providers.JsonRpcProvider(url);
+
+async function enstest() {
+  for (var i = 0; i < whale_list.length; i++) {
+    var address = whale_list[i];
+    var name = await provider.lookupAddress(address);
+    console.log(name);
+  }
+}
+
+//whaleActivity();
+enstest()
