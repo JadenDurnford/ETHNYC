@@ -1,4 +1,5 @@
 const axios = require("axios").default;
+const CronJob = require('cron').CronJob;
 require('dotenv').config();
 
 axios.defaults.headers.common['x-api-key'] = `${process.env.X_API_KEY}`;
@@ -20,8 +21,11 @@ async function collectionInfo() {
     const collName = collInfo.name; // ex. Bored Ape Yacht Club
     const collUrls = collInfo.metadata; // ex. imageurl, discordurl, description, externalurl, bannerimageurl, twitterusername
     const collOwnerCount = collInfo.ownerCount; // 6456
-    const collFloor = collInfo.floorAsk.price; // 87.17
-    
+    const collFloor = collInfo.floorAsk; // id, price, maker, token
+    const collRank = collInfo.rank; // 1 day, 7 day, 30 day, all time
+    const collVolume = collInfo.volume; // 1 day, 7 day, 30 day, all time
+    const collVolChange = collInfo.volumeChange; // 1 day, 7 day, 30 day
+    const collRoyalty = collInfo.royalties.bps; // 250 -- divide by 100 to get percent
     const traits = [];
     const traitTypes = {};
     // Pulling traits
@@ -96,4 +100,11 @@ async function rarityCalculator() {
       } catch (error) {
         console.error(error);
       }
+}
+
+async function snipeWatcher() {
+    const contractAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" //using address for project selected
+    const activityResponse = await axios.get(`https://api.reservoir.tools/collections/${contractAddress}/activity/v1?limit=20&types=ask`);
+    const collActivity = activityResponse.data.activities;
+
 }
