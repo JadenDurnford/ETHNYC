@@ -1,14 +1,29 @@
-const sdk = require("api")("@reservoirprotocol/v1.0#1qqrk1pl4stynuh");
-
-sdk.auth("b8644c0e-9e85-4fdb-a0d7-55f7f8672cab");
-sdk.server("https://api.reservoir.tools");
-sdk
-  .getUsersUserActivityV1({
-    limit: "20",
-    user: "0xF296178d553C8Ec21A2fBD2c5dDa8CA9ac905A00",
+const options = {
+  method: "GET",
+  headers: {
     Accept: "*/*",
+    "x-api-key": "b8644c0e-9e85-4fdb-a0d7-55f7f8672cab",
+  },
+};
+const fs = require('fs');
+
+const temp = "0xF296178d553C8Ec21A2fBD2c5dDa8CA9ac905A00";
+
+fetch(
+  "https://api.reservoir.tools/users/" + temp + "/activity/v1?limit=20",
+  options
+)
+  .then((response) => response.json())
+  .then((response) => {
+    const data = JSON.stringify(response);
+
+    fs.writeFile("predictuser.json", data, (err) => {
+      if (err) {
+        throw err;
+      }
+      console.log("JSON data is saved.");
+    });
   })
-  .then((res) => console.log(res))
   .catch((err) => console.error(err));
 
 const whale_list = [
