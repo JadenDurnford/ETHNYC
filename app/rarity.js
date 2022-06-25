@@ -56,7 +56,6 @@ async function main() {
             tokenRarity[i] = rarity;
         }
         rarities = Object.entries(tokenRarity).sort((a,b) => b[1]-a[1]);
-        console.log(rarities);
       } catch (error) {
         console.error(error);
       }
