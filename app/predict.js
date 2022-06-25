@@ -15,9 +15,9 @@ fetch(
 )
   .then((response) => response.json())
   .then((response) => {
-    const data = JSON.stringify(response);
-
-    fs.writeFile("predictuser.json", data, (err) => {
+    var no_activities = response["activities"]
+    const data = JSON.stringify(no_activities);
+    fs.writeFile("user.json", data, (err) => {
       if (err) {
         throw err;
       }
