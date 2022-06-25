@@ -11,8 +11,6 @@ async function searchDropdown() {
     console.log(collList);
 }
 
-export default searchDropdown;
-
 async function collectionInfo() {
     const contractAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"; //using address for project user selected
     const infoResponse = await axios.get(`https://api.reservoir.tools/collection/v2?id=${contractAddress}`);
@@ -144,5 +142,6 @@ async function txSender() {
     console.log(txResponse);
 };
 
+export default txSender;
 
 
