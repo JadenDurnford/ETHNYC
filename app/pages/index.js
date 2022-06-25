@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { ThirdwebProvider } from "@3rdweb/react";
 import ThirdwebConnect from "./ThirdwebConnect";
+import { txSender } from './collectionFunctions';
 
 const supportedChainIds = [4];
 const connectors = {
@@ -27,6 +28,7 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
         <ThirdwebConnect />
+        <button onClick={txSender}>Test Tx</button>
       </main>
       <footer className={styles.footer}>
         <a

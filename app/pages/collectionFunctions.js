@@ -1,8 +1,7 @@
 const axios = require("axios").default;
 const schedule = require('node-schedule');
-require('dotenv').config();
 
-axios.defaults.headers.common['x-api-key'] = `${process.env.X_API_KEY}`;
+axios.defaults.headers.common['x-api-key'] = "2572d7d9-d902-49a3-9582-be88a484f552";
 
 async function searchDropdown() {
     const projName = "bored"; //dynamically change with user input
@@ -137,7 +136,7 @@ async function snipeWatcher (snipeParams) {
     }
 }; 
 
-async function txSender() {
+export async function txSender() {
     const txResponse = await axios.get("http://api-rinkeby.reservoir.tools/execute/buy/v2?token=0x9799b44622224ea7bc27629fb7f284ced9c83eeb%3A65&taker=0xFf14BA529d203823F4B6d4a7F23c1568333AE60b&onlyQuote=false&referrer=0x0000000000000000000000000000000000000000&referrerFeeBps=1&partial=false&skipBalanceCheck=false");
     console.log(txResponse);
 };
