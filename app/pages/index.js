@@ -38,8 +38,13 @@ export default function Home() {
               <ThirdwebConnect className={styles.headeritem} />
             </div>
           </div>
-          <div style={{ marginLeft: 0, width: "30%", height: "100vh", backgroundColor: "rgb(174, 221, 252)" }}>
-            <SearchSection openMarketplace={openMarketplace}></SearchSection>
+          <div style={{ display: "flex" }}>
+            <div style={{ marginLeft: 0, width: "30%", height: "100vh", backgroundImage: "linear-gradient(rgb(174, 221, 252), white)" }}>
+              <SearchSection openMarketplace={openMarketplace}></SearchSection>
+            </div>
+            <div style={{ marginRight: 0, width: "70%", height: "100vh" }}>
+              <p>the actual marketplace stuff</p>
+            </div>
           </div>
         </main>
       </div>
