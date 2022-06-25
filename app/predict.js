@@ -1,8 +1,8 @@
 const axios = require("axios");
+const fs = require("fs");
 require('dotenv').config();
 axios.defaults.headers.common["x-api-key"] = `${process.env.EDDY_KEY}`;
 
-const fs = require("fs");
 const whale_list = [
   "0xE052113bd7D7700d623414a0a4585BCaE754E9d5",
   "0x052564eB0fd8b340803dF55dEf89c25C432f43f4",
@@ -16,13 +16,25 @@ const whale_list = [
   "0x3612b2e93b49F6c797066cA8c38b7f522b32c7cb",
 ];
 
-async function tempfunc() {
+async function whaleActivity() {
+  var alldata = []
   for (var i = 0; i < whale_list.length; i++) {
     const data = await axios.get(
       `https://api.reservoir.tools/users/${whale_list[i]}/activity/v1?limit=20`
     );
-    console.log(data["data"]["activities"]);
+    activity = data["data"]["activities"]
+    for (let i = 0; i < activity.length; i++) {
+      activity[i]["collection"] = activity[i]["collection"]["collectionId"]
+    }
+    alldata = alldata.concat(activity)
+    data_string = JSON.stringify(alldata);
   }
+  fs.writeFile("user.json", data_string, (err) => {
+    if (err) {
+      throw err;
+    }
+    console.log("JSON data is saved.");
+  });
 }
 
-tempfunc();
+whaleActivity();
