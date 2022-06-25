@@ -142,6 +142,5 @@ async function txSender() {
     console.log(txResponse);
 };
 
-export default txSender;
 
 
