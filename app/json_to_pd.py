@@ -19,11 +19,9 @@ def calculate_whale_buy_sentiment():
                 whales_bought[row['collection']].append(row['toAddress'])
             else:
                 continue
-    
-    print(whales_bought)
     for i in range(len(whales_bought)):
         whales_bought[list(whales_bought)[i]] = len(whales_bought[list(whales_bought)[i]])
-
+    print(whales_bought)
     return whales_bought # the length of the list for your specific nft collection is the sentiment
 
 def calculate_whale_sell_sentiment():
@@ -39,10 +37,9 @@ def calculate_whale_sell_sentiment():
                 whales_sold[row['collection']].append(row['fromAddress'])
             else:
                 continue
-    print(whales_sold)
     for i in range(len(whales_sold)):
         whales_sold[list(whales_sold)[i]] = len(whales_sold[list(whales_sold)[i]])
-    
+    print(whales_sold)
     return whales_sold #get .len() of the whales_sold[collection id] to get how many nfts in this collection were sold by whales (sentiment)
 
 calculate_whale_buy_sentiment()
