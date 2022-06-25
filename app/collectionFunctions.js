@@ -1,5 +1,5 @@
 const axios = require("axios").default;
-const CronJob = require('cron').CronJob;
+const schedule = require('node-schedule');
 require('dotenv').config();
 
 axios.defaults.headers.common['x-api-key'] = `${process.env.X_API_KEY}`;
@@ -102,9 +102,40 @@ async function rarityCalculator() {
       }
 }
 
-async function snipeWatcher() {
-    const contractAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" //using address for project selected
-    const activityResponse = await axios.get(`https://api.reservoir.tools/collections/${contractAddress}/activity/v1?limit=20&types=ask`);
-    const collActivity = activityResponse.data.activities;
+const snipeParams = {
+    snipeID: "1234",
+    contractAddress: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+    buyPrice: 120,
+    gasPrice: "500",
+    rarityMax: "500",
+    quantity: "2" 
+};
+let counter = 0;
+let check = true;
 
+function scheduler (snipeParams) {
+    let job = schedule.scheduleJob(snipeParams.snipeID, '*/1 * * * * *', () => snipeWatcher (snipeParams));
 }
+
+async function snipeWatcher (snipeParams) {
+    const contractAddress = snipeParams.contractAddress //using address for project selected
+    const activityResponse = await axios.get(`https://api.reservoir.tools/collections/${contractAddress}/activity/v1?limit=10&types=ask`);
+    const collActivity = activityResponse.data.activities;
+    if (check) {
+        for (i = 0; i < collActivity.length; i++) {
+            if (collActivity[i].price <= snipeParams.buyPrice) {
+                console.log(`sending tx for token ${collActivity[i].token.tokenId} at price of ${collActivity[i].price}`);
+                check = false;
+                return;
+            }
+        }
+    } else {
+        console.log("transaction confirmed, snipe complete");
+        let current_job = schedule.scheduledJobs[snipeParams.snipeID];
+        current_job.cancel();
+    }
+}; 
+
+scheduler(snipeParams);
+
+
