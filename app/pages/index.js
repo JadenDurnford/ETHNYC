@@ -39,7 +39,7 @@ export default function Home() {
             <div style={{ margin: "auto", marginLeft: "10px" }}>
               <h1 style={{ fontSize: "24px", textAlign: "left", color: "white" }}>PROJECT NAME...</h1>
             </div>
-            <div style={{ width: "25%" }}>
+            <div>
               <ThirdwebConnect className={styles.headeritem} />
             </div>
           </div>
