@@ -50,5 +50,5 @@ async function enstest() {
   }
 }
 
-//whaleActivity();
-enstest()
+whaleActivity()
+//enstest()
